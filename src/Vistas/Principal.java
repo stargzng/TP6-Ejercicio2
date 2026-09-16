@@ -7,14 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Principal extends javax.swing.JFrame {
-
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
     public static TreeSet<Producto> productos = new TreeSet<>();
-
+    
     public Principal() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,6 +43,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.setText("Administracion");
 
+        MenuGestor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_SPACE, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         MenuGestor.setText("Gestion de Productos");
         MenuGestor.addActionListener(this::MenuGestorActionPerformed);
         jMenu1.add(MenuGestor);
@@ -51,13 +52,16 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu2.setText("Consultas");
 
+        MenuConsultaCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         MenuConsultaCategoria.setText("Por Categoria");
+        MenuConsultaCategoria.addActionListener(this::MenuConsultaCategoriaActionPerformed);
         jMenu2.add(MenuConsultaCategoria);
 
         MenuConsultaPrecio.setText("Por Precio");
         jMenu2.add(MenuConsultaPrecio);
 
         MenuConsultaNombre.setText("Por Nombre");
+        MenuConsultaNombre.addActionListener(this::MenuConsultaNombreActionPerformed);
         jMenu2.add(MenuConsultaNombre);
 
         jMenuBar1.add(jMenu2);
@@ -83,13 +87,31 @@ public class Principal extends javax.swing.JFrame {
 
     private void MenuGestorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuGestorActionPerformed
         GestorProductos gp = new GestorProductos();
-
+        
         jDesktopPane1.add(gp);
         gp.setVisible(true);
         gp.toFront();
 
     }//GEN-LAST:event_MenuGestorActionPerformed
 
+    private void MenuConsultaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaCategoriaActionPerformed
+        
+        ConsultaPorCategoriaIF cc = new ConsultaPorCategoriaIF();
+        jDesktopPane1.add(cc);
+        cc.setVisible(true);
+        
+    }//GEN-LAST:event_MenuConsultaCategoriaActionPerformed
+
+    private void MenuConsultaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaNombreActionPerformed
+        
+        ConsultaPorNombreIF cn = new ConsultaPorNombreIF();
+        
+        jDesktopPane1.add(cn);
+        cn.setVisible(true);
+        
+
+    }//GEN-LAST:event_MenuConsultaNombreActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -123,22 +145,22 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public static boolean camposVacios(JPanel panel) {
-
+        
         for (Component c : panel.getComponents()) {
-
+            
             if (c instanceof JTextField) {
-
+                
                 JTextField tf = (JTextField) c;
-
+                
                 if (tf.getText().trim().isEmpty()) {
                     return false;
                 }
-
+                
             }
-
+            
         }
-
+        
         return true;
     }
-
+    
 }
