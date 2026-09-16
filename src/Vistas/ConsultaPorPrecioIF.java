@@ -1,8 +1,6 @@
 package Vistas;
 
-import Entidades.Categoria;
 import Entidades.Producto;
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,7 +10,6 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
 
     public ConsultaPorPrecioIF() {
         initComponents();
-        cargarComboBoxCategorias();
         armarCabecera();
     }
 
@@ -22,10 +19,12 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ComboBoxCategoria = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        CerrarBTN = new javax.swing.JButton();
+        DesdejTF = new javax.swing.JTextField();
+        HastajTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -33,9 +32,7 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Rubro:");
-
-        ComboBoxCategoria.addItemListener(this::ComboBoxCategoriaItemStateChanged);
+        jLabel2.setText("Desde:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -47,8 +44,23 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("CERRAR");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        CerrarBTN.setText("CERRAR");
+        CerrarBTN.addActionListener(this::CerrarBTNActionPerformed);
+
+        DesdejTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                DesdejTFKeyReleased(evt);
+            }
+        });
+
+        HastajTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                HastajTFKeyPressed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Hasta:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,76 +72,68 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel2)
-                        .addGap(29, 29, 29)
-                        .addComponent(ComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CerrarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DesdejTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(HastajTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(51, 51, 51)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(ComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                    .addComponent(DesdejTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HastajTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CerrarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CerrarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBTNActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CerrarBTNActionPerformed
 
-    private void ComboBoxCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxCategoriaItemStateChanged
-        modelo.setRowCount(0);
+    private void DesdejTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DesdejTFKeyReleased
+        filtrarPrecio();
+    }//GEN-LAST:event_DesdejTFKeyReleased
 
-        Categoria seleccion = (Categoria) ComboBoxCategoria.getSelectedItem();
-
-        
-        for (Producto producto : Principal.productos) {
-
-            if (producto.getCategoria().equals(seleccion)) {
-                modelo.addRow(new Object[]{producto.getCodigo(), producto.getDescripcion(), producto.getPrecio(), producto.getStock(), producto.getCategoria()});
-                
-            }
-
-        }
-
-        
-    }//GEN-LAST:event_ComboBoxCategoriaItemStateChanged
+    private void HastajTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HastajTFKeyPressed
+        filtrarPrecio();
+    }//GEN-LAST:event_HastajTFKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Categoria> ComboBoxCategoria;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton CerrarBTN;
+    private javax.swing.JTextField DesdejTF;
+    private javax.swing.JTextField HastajTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    private void cargarComboBoxCategorias() {
-        ComboBoxCategoria.addItem(Categoria.LIMPIEZA);
-        ComboBoxCategoria.addItem(Categoria.PERFUMERIA);
-        ComboBoxCategoria.addItem(Categoria.COMESTIBLE);
-        ComboBoxCategoria.setSelectedItem(null);
-    }
 
     private void armarCabecera() {
 
@@ -143,4 +147,31 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
 
     }
 
+    private void filtrarPrecio() {
+
+        modelo.setRowCount(0);
+
+//        String minimo = (DesdejTF.getText());
+//        String maximo = (HastajTF.getText());
+//
+//        if (minimo.isEmpty() && maximo.isEmpty()) {
+//            return;
+//        }
+
+        try {
+
+            int max = Integer.parseInt(HastajTF.getText());
+            int min = Integer.parseInt(DesdejTF.getText());
+
+            for (Producto aux : Principal.productos) {
+
+                if (aux.getPrecio() > min && aux.getPrecio() < max) {
+                    modelo.addRow(new Object[]{aux.getCodigo(), aux.getDescripcion(), aux.getPrecio(), aux.getCategoria(), aux.getCategoria()});
+                }
+
+            }
+        } catch (NumberFormatException exception) {
+            return;
+        }
+    }
 }

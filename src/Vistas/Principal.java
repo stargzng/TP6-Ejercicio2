@@ -57,9 +57,12 @@ public class Principal extends javax.swing.JFrame {
         MenuConsultaCategoria.addActionListener(this::MenuConsultaCategoriaActionPerformed);
         jMenu2.add(MenuConsultaCategoria);
 
+        MenuConsultaPrecio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         MenuConsultaPrecio.setText("Por Precio");
+        MenuConsultaPrecio.addActionListener(this::MenuConsultaPrecioActionPerformed);
         jMenu2.add(MenuConsultaPrecio);
 
+        MenuConsultaNombre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         MenuConsultaNombre.setText("Por Nombre");
         MenuConsultaNombre.addActionListener(this::MenuConsultaNombreActionPerformed);
         jMenu2.add(MenuConsultaNombre);
@@ -111,6 +114,14 @@ public class Principal extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_MenuConsultaNombreActionPerformed
+
+    private void MenuConsultaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultaPrecioActionPerformed
+        ConsultaPorPrecioIF cp = new ConsultaPorPrecioIF();
+       
+        jDesktopPane1.add(cp); 
+        cp.setVisible(true);
+        
+    }//GEN-LAST:event_MenuConsultaPrecioActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
