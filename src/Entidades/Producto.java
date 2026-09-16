@@ -61,6 +61,12 @@ public class Producto implements Comparable<Producto>{
     public int compareTo(Producto o) {
         return Integer.compare(this.codigo, o.getCodigo());
     }
+
+    @Override
+    public String toString() {
+        return descripcion;
+    }
+    
     
     
     

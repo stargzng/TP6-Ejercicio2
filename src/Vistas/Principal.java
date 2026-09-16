@@ -82,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
     private void MenuGestorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuGestorActionPerformed
         GestorProductos gp = new GestorProductos();
         
-        jDesktopPane1.removeAll();
+
         jDesktopPane1.add(gp);
         gp.setVisible(true);
         gp.toFront();

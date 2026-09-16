@@ -2,6 +2,8 @@ package Vistas;
 
 import Entidades.Categoria;
 import Entidades.Producto;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,7 +14,9 @@ public class GestorProductos extends javax.swing.JInternalFrame {
     public GestorProductos() {
         initComponents();
         cargarCabeceras();
+        cargarTabla();
         cargarComboBoxCategorias();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -115,6 +119,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         GuardarBttn.addActionListener(this::GuardarBttnActionPerformed);
 
         EliminarBttn.setText("ELIMINAR");
+        EliminarBttn.addActionListener(this::EliminarBttnActionPerformed);
 
         jTableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,22 +141,22 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EliminarBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(GuardarBttn)
                             .addComponent(GuardarBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(9, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(127, 127, 127))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,13 +166,13 @@ public class GestorProductos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(EliminarBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(GuardarBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(31, 31, 31)
                         .addComponent(GuardarBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35))
         );
@@ -177,13 +182,46 @@ public class GestorProductos extends javax.swing.JInternalFrame {
 
     private void GuardarBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBttnActionPerformed
         Producto p = new Producto(Integer.parseInt(CodigoTxtF.getText()), DescripcionTxtF.getText(), Long.parseLong(PrecioTxtF.getText()), (Integer) StockSpinner.getValue(), (Categoria) ComboBoxCategoria.getSelectedItem());
-        modelo.addRow(new Object[]{ p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock(), p.getCategoria()});
-        
+        Principal.productos.add(p);
+
+        modelo.setRowCount(0);
+        cargarTabla();
+
+        CodigoTxtF.setText("");
+        DescripcionTxtF.setText("");
+        PrecioTxtF.setText("");
+        StockSpinner.setValue(0);
+
     }//GEN-LAST:event_GuardarBttnActionPerformed
 
     private void GuardarBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBttn1ActionPerformed
         dispose();
     }//GEN-LAST:event_GuardarBttn1ActionPerformed
+
+    private void EliminarBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBttnActionPerformed
+        
+        if (jTableProductos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto");
+            return;
+        } 
+        
+        Iterator<Producto> it = Principal.productos.iterator();
+        int codigoSeleccion = (Integer) modelo.getValueAt(jTableProductos.getSelectedRow(), 0);
+        
+        while (it.hasNext()) {
+
+            Producto producto = it.next();
+            
+            if (producto.getCodigo() == codigoSeleccion) {
+                it.remove();
+                JOptionPane.showMessageDialog(this, "se elimino " + producto + " correctamente");
+            }
+
+        }
+
+        cargarTabla();
+
+    }//GEN-LAST:event_EliminarBttnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,6 +259,18 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         modelo.addColumn("Categoria");
 
         jTableProductos.setModel(modelo);
+
+    }
+
+    public void cargarTabla() {
+
+        modelo.setRowCount(0);
+
+        for (Producto p : Principal.productos) {
+
+            modelo.addRow(new Object[]{p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock(), p.getCategoria()});
+
+        }
 
     }
 
