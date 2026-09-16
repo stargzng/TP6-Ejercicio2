@@ -1,9 +1,13 @@
 package Vistas;
 
+import Entidades.Producto;
+import java.util.TreeSet;
+
 
 public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
+    public TreeSet<Producto> productos = new TreeSet<>();
 
     public Principal() {
         initComponents();
