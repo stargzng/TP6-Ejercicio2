@@ -1,11 +1,13 @@
 package Vistas;
 
 import Entidades.Producto;
+import java.awt.Component;
 import java.util.TreeSet;
-
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Principal extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
     public static TreeSet<Producto> productos = new TreeSet<>();
 
@@ -81,14 +83,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void MenuGestorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuGestorActionPerformed
         GestorProductos gp = new GestorProductos();
-        
 
         jDesktopPane1.add(gp);
         gp.setVisible(true);
         gp.toFront();
-        
-    }//GEN-LAST:event_MenuGestorActionPerformed
 
+    }//GEN-LAST:event_MenuGestorActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -121,4 +121,24 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+
+    public static boolean camposVacios(JPanel panel) {
+
+        for (Component c : panel.getComponents()) {
+
+            if (c instanceof JTextField) {
+
+                JTextField tf = (JTextField) c;
+
+                if (tf.getText().trim().isEmpty()) {
+                    return false;
+                }
+
+            }
+
+        }
+
+        return true;
+    }
+
 }
