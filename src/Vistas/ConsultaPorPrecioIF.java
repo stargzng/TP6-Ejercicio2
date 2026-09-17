@@ -150,14 +150,10 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
     private void filtrarPrecio() {
 
         modelo.setRowCount(0);
-
-//        String minimo = (DesdejTF.getText());
-//        String maximo = (HastajTF.getText());
-//
-//        if (minimo.isEmpty() && maximo.isEmpty()) {
-//            return;
-//        }
-
+        
+        if (DesdejTF.getText().isEmpty() || HastajTF.getText().isEmpty()){ 
+            return; 
+        }
 
         try {
 
@@ -165,7 +161,7 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
             int min = Integer.parseInt(DesdejTF.getText());
 
             for (Producto aux : Principal.productos) {
-
+                
                 if (aux.getPrecio() > min && aux.getPrecio() < max) {
                     modelo.addRow(new Object[]{aux.getCodigo(), aux.getDescripcion(), aux.getPrecio(), aux.getStock(), aux.getCategoria()});
                 }
