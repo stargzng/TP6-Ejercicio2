@@ -67,6 +67,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -89,29 +90,36 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jDesktopPane1" min="-2" max="-2" attributes="0"/>
+              <Component id="jDesktopPane1" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jDesktopPane1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jDesktopPane1" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane() {&#xd;&#xa;    protected void paintComponent(java.awt.Graphics g) {&#xd;&#xa;        &#xd;&#xa;        Image miImagen = new javax.swing.ImageIcon(getClass().getResource(&quot;/Imagenes/fondo.png&quot;)).getImage();&#xd;&#xa;        g.drawImage(miImagen, 0, 0, getWidth(), getHeight(), this);&#xd;&#xa;    }&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono = new ImageIcon(getClass().getResource(&quot;/Imagenes/fondo.png&quot;));&#xd;&#xa;&#xd;&#xa;Image miImagen = icono.getImage();"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="819" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="941" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="506" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="616" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

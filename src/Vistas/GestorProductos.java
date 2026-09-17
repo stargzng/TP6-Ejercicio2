@@ -196,7 +196,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
                 return;
             }
             
-            Producto p = new Producto(Integer.parseInt(CodigoTxtF.getText()), DescripcionTxtF.getText(), Long.parseLong(PrecioTxtF.getText()), (Integer) StockSpinner.getValue(), (Categoria) ComboBoxCategoria.getSelectedItem());
+            Producto p = new Producto(Integer.parseInt(CodigoTxtF.getText()), DescripcionTxtF.getText(), Double.parseDouble(PrecioTxtF.getText()), (Integer) StockSpinner.getValue(), (Categoria) ComboBoxCategoria.getSelectedItem());
             Principal.productos.add(p);
             
         } catch (Exception numberFormatException) {
