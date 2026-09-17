@@ -39,7 +39,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         EliminarBttn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProductos = new javax.swing.JTable();
-        GuardarBttn1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -140,8 +140,8 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableProductos);
 
-        GuardarBttn1.setText("SALIR");
-        GuardarBttn1.addActionListener(this::GuardarBttn1ActionPerformed);
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(this::btnSalirActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +154,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(GuardarBttn)
                     .addComponent(EliminarBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GuardarBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -180,7 +180,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(GuardarBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GuardarBttn1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34))
         );
 
@@ -213,9 +213,9 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         StockSpinner.setValue(0);
     }//GEN-LAST:event_GuardarBttnActionPerformed
 
-    private void GuardarBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBttn1ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
-    }//GEN-LAST:event_GuardarBttn1ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void EliminarBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBttnActionPerformed
 
@@ -249,9 +249,9 @@ public class GestorProductos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField DescripcionTxtF;
     private javax.swing.JButton EliminarBttn;
     private javax.swing.JButton GuardarBttn;
-    private javax.swing.JButton GuardarBttn1;
     private javax.swing.JTextField PrecioTxtF;
     private javax.swing.JSpinner StockSpinner;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

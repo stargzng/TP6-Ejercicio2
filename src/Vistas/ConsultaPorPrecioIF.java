@@ -1,7 +1,6 @@
 package Vistas;
 
 import Entidades.Producto;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
@@ -157,8 +156,8 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
 
         try {
 
-            int max = Integer.parseInt(HastajTF.getText());
-            int min = Integer.parseInt(DesdejTF.getText());
+            double min = Double.parseDouble(DesdejTF.getText());
+            double max = Double.parseDouble(HastajTF.getText());
 
             for (Producto aux : Principal.productos) {
                 
