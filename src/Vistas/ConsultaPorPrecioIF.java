@@ -158,6 +158,7 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
 //            return;
 //        }
 
+
         try {
 
             int max = Integer.parseInt(HastajTF.getText());
@@ -166,7 +167,7 @@ public class ConsultaPorPrecioIF extends javax.swing.JInternalFrame {
             for (Producto aux : Principal.productos) {
 
                 if (aux.getPrecio() > min && aux.getPrecio() < max) {
-                    modelo.addRow(new Object[]{aux.getCodigo(), aux.getDescripcion(), aux.getPrecio(), aux.getCategoria(), aux.getCategoria()});
+                    modelo.addRow(new Object[]{aux.getCodigo(), aux.getDescripcion(), aux.getPrecio(), aux.getStock(), aux.getCategoria()});
                 }
 
             }
